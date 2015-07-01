@@ -4,11 +4,27 @@
     "guest_os_type": "RedHat_64",
     "iso_checksum_type": "md5",
     "iso_checksum": "7b1fb1a11499b31271ded79da6af8584",
-    "iso_url": "/Data/iso/oel6.iso",
+    "iso_url": "/Data/iso/CentOS-6.6-x86_64-bin-DVD1.iso",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "shutdown_command": "sudo -S shutdown -P now",
     "http_directory": "http",
+    "virtualbox_version_file": ".vbox_version",
+    "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "512"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "1"
+        ]
+      ],
+    
     "boot_command": [
       "<wait><esc><esc>",
       "linux ks=http://{{.HTTPIP}}:{{.HTTPPort}}/kickstart.cfg<enter>"
@@ -16,6 +32,9 @@
   }],
   "post-processors": ["vagrant"]
 }
+
+
+
 
 
 
