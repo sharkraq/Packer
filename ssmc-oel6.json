@@ -1,0 +1,37 @@
+{ 
+  "builders": [{
+    "type": "virtualbox-iso",
+    "guest_os_type": "RedHat_64",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "f88bd160b450c8df582e736fc502b3b5",
+    "iso_url": "/Data/iso/oel6.iso",
+    "ssh_username": "root",
+    "ssh_password": "silversky",
+    "ssh_timeout": "20m",
+    "shutdown_command": "sudo -S shutdown -P now",
+    "http_directory": "http",
+    "virtualbox_version_file": ".vbox_version",
+    "vboxmanage": [
+    ["modifyvm", "{{.Name}}", "--memory", "1024"],
+    ["modifyvm", "{{.Name}}", "--cpus", "1"]
+    ],
+    "boot_command": [
+      "<wait><esc><esc>",
+      "linux ks=http://{{.HTTPIP}}:{{.HTTPPort}}/oracle6.cfg<enter>"
+    ]
+    }],
+  "provisioners": [{
+    "type": "file",
+    "source": "src/ssmc-oracle/ssl.tar",
+    "destination": "/etc/httpd/ssl.tar"
+    }, {
+    "type": "file",
+    "source": "src/ssmc-oracle/httpd.conf",
+    "destination": "/etc/httpd/conf/httpd.conf" 
+    }, {
+    "type": "file",
+    "source": "src/ssmc-oracle/unity.conf",
+    "destination": "/etc/httpd/conf.d/unity.conf"
+}]
+
+}
