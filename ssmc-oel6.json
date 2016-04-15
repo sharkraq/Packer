@@ -22,8 +22,8 @@
     }],
   "provisioners": [{
     "type": "file",
-    "source": "src/ssmc-oracle/ssl.tar",
-    "destination": "/etc/httpd/ssl.tar"
+    "source": "src/ssmc-oracle/ssl",
+    "destination": "/etc/httpd"
     }, {
     "type": "file",
     "source": "src/ssmc-oracle/httpd.conf",
@@ -32,6 +32,5 @@
     "type": "file",
     "source": "src/ssmc-oracle/unity.conf",
     "destination": "/etc/httpd/conf.d/unity.conf"
-}]
-
+      }]
 }
